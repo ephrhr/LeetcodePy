@@ -11,10 +11,10 @@ class Solution:
         currDepth = 1
         q = deque()
         q.append(root)
-        while len(q) > 0:
+        while len(q):
             qNext = deque()
             currDepth += 1
-            while len(q) > 0:
+            while len(q):
                 node = q.popleft()
                 if currDepth == depth:
                     newLeft = TreeNode(val, node.left, None)
