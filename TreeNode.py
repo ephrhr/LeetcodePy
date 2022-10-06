@@ -1,4 +1,4 @@
-import queue
+from collections import deque
 
 
 class TreeNode:
@@ -21,16 +21,16 @@ def createTreeNode(data, index=0):
 
 def TreeNodeToList(root: TreeNode):
     arr = []
-    q = queue.Queue()
-    q.put(root)
-    while not q.empty():
-        qNext = queue.Queue()
-        while not q.empty():
-            node = q.get()
+    q = deque()
+    q.append(root)
+    while len(q):
+        qNext = deque()
+        while len(q):
+            node = q.popleft()
             if node is not None:
                 arr.append(node.val)
-                qNext.put(node.left)
-                qNext.put(node.right)
+                qNext.append(node.left)
+                qNext.append(node.right)
             else:
                 arr.append(None)
         q = qNext

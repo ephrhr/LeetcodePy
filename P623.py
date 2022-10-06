@@ -1,6 +1,6 @@
 from TreeNode import TreeNode, createTreeNode, TreeNodeToList
 from typing import Optional
-import queue
+from collections import deque
 
 
 class Solution:
@@ -9,22 +9,22 @@ class Solution:
             newHead = TreeNode(val, root)
             return newHead
         currDepth = 1
-        q = queue.Queue()
-        q.put(root)
-        while not q.empty():
-            qNext = queue.Queue()
+        q = deque()
+        q.append(root)
+        while len(q) > 0:
+            qNext = deque()
             currDepth += 1
-            while not q.empty():
-                node = q.get()
+            while len(q) > 0:
+                node = q.popleft()
                 if currDepth == depth:
                     newLeft = TreeNode(val, node.left, None)
                     newRight = TreeNode(val, None, node.right)
                     node.left = newLeft
                     node.right = newRight
                 if node.left is not None:
-                    qNext.put(node.left)
+                    qNext.append(node.left)
                 if node.right is not None:
-                    qNext.put(node.right)
+                    qNext.append(node.right)
             q = qNext
         return root
 
