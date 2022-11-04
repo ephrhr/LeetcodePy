@@ -22,9 +22,12 @@ class TreeNode:
 
 class Solution:
     def maxDepth(self, root: Optional[TreeNode]) -> int:
-        def dfs(node: Optional[TreeNode], depth=0) -> int:
-            if node is None:
-                return depth
-            return max(dfs(node.left, depth + 1), dfs(node.right, depth + 1))
-        return dfs(root)
+        return 0 if root is None else max(self.maxDepth(root.left), self.maxDepth(root.right)) + 1
 # @lc code=end
+# class Solution:
+#     def maxDepth(self, root: Optional[TreeNode]) -> int:
+#         def dfs(node: Optional[TreeNode], depth=0) -> int:
+#             if node is None:
+#                 return depth
+#             return max(dfs(node.left, depth + 1), dfs(node.right, depth + 1))
+#         return dfs(root)
