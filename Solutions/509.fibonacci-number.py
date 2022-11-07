@@ -10,12 +10,11 @@ class Solution:
         if 0 <= n <= 1:
             return n
         prev_1, prev_2 = 1, 0
-        curr = 1
         for _ in range(2, n + 1):
             curr = prev_1 + prev_2
             prev_2 = prev_1
             prev_1 = curr
-        return curr
+        return prev_1
 # @lc code=end
 # iterative solution
 # class Solution:
