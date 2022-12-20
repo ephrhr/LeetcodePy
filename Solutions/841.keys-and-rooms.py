@@ -11,8 +11,7 @@ from collections import deque
 
 class Solution:
     def canVisitAllRooms(self, rooms: List[List[int]]) -> bool:
-        visited = set()
-        visited.add(0)
+        visited = set([0])
         q = deque([i for i in rooms[0]])
         while q:
             nq = deque()
@@ -32,9 +31,7 @@ class Solution:
 # DFS
 # class Solution:
 #     def canVisitAllRooms(self, rooms: List[List[int]]) -> bool:
-#         visited = set()
-#         visited.add(0)
-
+#         visited = set([0])
 #         def dfs(key):
 #             if key in visited:
 #                 return
