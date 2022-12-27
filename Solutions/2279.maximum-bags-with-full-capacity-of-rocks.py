@@ -10,26 +10,17 @@ from typing import List
 class Solution:
     def maximumBags(self, capacity: List[int], rocks: List[int], additionalRocks: int) -> int:
         n = len(capacity)
-        bags = capacity
         ans = 0
-        capableRocks = 0
         for i in range(n):
-            bags[i] -= rocks[i]
-            capableRocks += bags[i]
-        if additionalRocks >= capableRocks:
+            capacity[i] -= rocks[i]
+        if additionalRocks >= sum(capacity):
             return n
-        bags = sorted(bags)
+        capacity = sorted(capacity)
         for i in range(n):
-            if bags[i] == 0:
-                ans += 1
-                continue
-            if additionalRocks == 0:
-                break
-            if bags[i] > 0:
-                if bags[i] > additionalRocks:
-                    return ans
-                additionalRocks -= bags[i]
-                bags[i] = 0
-                ans += 1
+            if capacity[i] > additionalRocks:
+                return ans
+            additionalRocks -= capacity[i]
+            ans += 1
+
         return ans
 # @lc code=end
