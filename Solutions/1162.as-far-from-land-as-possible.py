@@ -3,32 +3,24 @@
 #
 # [1162] As Far from Land as Possible
 #
-from typing import List, Deque
+from typing import List
+from collections import deque
 # @lc code=start
 class Solution:
     def maxDistance(self, grid: List[List[int]]) -> int:
         n, m = len(grid), len(grid[0])
         ans = 0
-        q = Deque()
-        for i in range(n):
-            for j in range(m):
-                if grid[i][j] == 1:
-                    q.append([i - 1, j])
-                    q.append([i + 1, j])
-                    q.append([i, j - 1])
-                    q.append([i, j + 1])
+        q = deque([(i,j) for i in range(m) for j in range(n) if grid[i][j] == 1])
         while q:
             ans += 1
-            temp = Deque()
+            temp = deque()
             while q:
-                next = q.popleft()
-                i, j = next[0], next[1]
-                if i >= 0 and j >= 0 and i < n and j < m and grid[i][j] == 0:
-                    grid[i][j] = ans
-                    temp.append([i - 1, j])
-                    temp.append([i + 1, j])
-                    temp.append([i, j - 1])
-                    temp.append([i, j + 1])
+                i, j = q.popleft()
+                for r, c in [(1,0), (-1, 0), (0, 1), (0, -1)]:
+                    ri, cj = r + i, c + j
+                    if 0 <= ri < n and 0 <= cj < m and grid[ri][cj] == 0:
+                        temp.append((ri, cj))
+                        grid[ri][cj] = ans
             q = temp
         return -1 if ans == 1 else ans - 1
 # @lc code=end
