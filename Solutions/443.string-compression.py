@@ -4,7 +4,6 @@
 # [443] String Compression
 #
 from typing import List
-from collections import deque
 # @lc code=start
 class Solution:
     def compress(self, chars: List[str]) -> int:
