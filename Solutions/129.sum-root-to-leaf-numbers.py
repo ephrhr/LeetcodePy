@@ -17,18 +17,13 @@ class TreeNode:
 #         self.left = left
 #         self.right = right
 class Solution:
-    ans = 0
     def sumNumbers(self, root: Optional[TreeNode]) -> int:
         def dfs(node: Optional[TreeNode], num=''):
-            if node:
-                num += str(node.val)
+            if not node: return 0
+            num += str(node.val)
             if not node.left and not node.right:
-                self.ans += int(num)
-            if node.left:
-                dfs(node.left, num)
-            if node.right:
-                dfs(node.right, num)
-        dfs(root)
-        return self.ans
+                return int(num)
+            return dfs(node.left, num) + dfs(node.right, num)
+        return dfs(root)
 # @lc code=end
 
