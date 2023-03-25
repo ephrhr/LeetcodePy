@@ -2,3 +2,5 @@
 /dist
 *.json
 *.config.js
+/logs
+.gitignore
