@@ -4,6 +4,7 @@
 # [1557] Minimum Number of Vertices to Reach All Nodes
 #
 from typing import List
+from collections import deque
 # @lc code=start
 
 
