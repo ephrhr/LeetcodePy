@@ -28,8 +28,6 @@ class Solution:
             if ans > 2 ** 31 - 1:
                 break
             i += 1
-        print(ans)
-        print(int(ans))
         if sign * ans > 2 ** 31 - 1 or sign * ans < -2 ** 31:
             return sign * (2 ** 31 - 1) if sign == 1 else -2 ** 31
         return int(ans) * sign
